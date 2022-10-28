@@ -11,8 +11,8 @@ const SHOW_LIST_KEY = '@ShowListKey';
 interface FavoriteContext {
   showList: Show[];
   addFavorite: (show: Show) => void;
-  deleteFavorite: (showId: string) => void;
-  isFavorite: (showId: string) => boolean;
+  deleteFavorite: (showId: number) => void;
+  isFavorite: (showId: number) => boolean;
 }
 const FavoriteContext = createContext<FavoriteContext>({
   showList: [],
@@ -71,7 +71,7 @@ export const FavoriteProvider: React.FC = ({children}) => {
       };
     });
   }
-  function deleteFavorite(showId: string) {
+  function deleteFavorite(showId: number) {
     if (favoriteList[showId]) {
       const updatedList = {...favoriteList};
       delete updatedList[showId];
@@ -80,7 +80,7 @@ export const FavoriteProvider: React.FC = ({children}) => {
       setFavoriteList(updatedList);
     }
   }
-  function isFavorite(showId: string): boolean {
+  function isFavorite(showId: number): boolean {
     return !!favoriteList[showId];
   }
 
